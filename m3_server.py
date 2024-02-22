@@ -58,9 +58,9 @@ class RequestProcessor:
         self.queue = asyncio.Queue()
         self.response_futures = {}
         self.processing_loop_task = None
-        self.processing_loop_started = False  # Nuevo estado para controlar el inicio lazy
-        self.executor = ThreadPoolExecutor()  # Executor para tareas en hilos
-        self.gpu_lock = asyncio.Semaphore(1)  # Semáforo para controlar el acceso a la GPU
+        self.processing_loop_started = False  # Processing pool flag lazy init state
+        self.executor = ThreadPoolExecutor()  # Thread pool
+        self.gpu_lock = asyncio.Semaphore(1)  # Sem for gpu sync usage
 
     async def ensure_processing_loop_started(self):
         if not self.processing_loop_started:
@@ -90,7 +90,6 @@ class RequestProcessor:
                 await self.process_requests_by_type(requests, request_types, request_ids)
 
     async def process_requests_by_type(self, requests, request_types, request_ids):
-        # Función modificada para usar el semáforo
         tasks = []
         for request_data, request_type, request_id in zip(requests, request_types, request_ids):
             if request_type == 'embed':
@@ -101,7 +100,7 @@ class RequestProcessor:
         await asyncio.gather(*tasks)
 
     async def run_with_semaphore(self, func, data, request_id):
-        async with self.gpu_lock:  # Espera a obtener el semáforo
+        async with self.gpu_lock:  # Wait for sem
             future = self.executor.submit(func, data)
             try:
                 result = await asyncio.wait_for(asyncio.wrap_future(future), timeout= gpu_time_out)
