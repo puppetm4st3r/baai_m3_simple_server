@@ -32,6 +32,8 @@ The script creates an asynchronous web server capable of concurrently processing
 
 Intended for local testing and demonstration, this server illustrates machine learning model integration with web technologies for NLP tasks. While providing a solid foundation, it's not suited for production without further development, especially regarding security, error handling, and scalability.
 
+While the server is designed with efficiency and concurrency in mind, it lacks specific optimizations for GPU usage, such as continuous batching. This implementation focuses on demonstrating basic batching and asynchronous processing capabilities. Users looking to scale this solution for higher performance in production environments should consider implementing more advanced GPU optimization techniques or the use production ready solutions.
+
 ## Conclusion
 
 The server demonstrates a practical approach to NLP tasks using FastAPI and the BAAI bge_m3 multilingual model, focusing on asynchronous processing, batching, and concurrency. It's a robust solution for local environments, with scalability and efficiency in mind. Users are encouraged to adapt and extend it for specific needs and production readiness.
