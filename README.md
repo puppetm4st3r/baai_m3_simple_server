@@ -36,7 +36,7 @@ While the server is designed with efficiency and concurrency in mind, it lacks s
 
 ### Dependencies and execution
 
-I strongly recommend to run the code inside a nvidia/cuda:12.1.0-devel-ubuntu22.04 docker container, that container has all gpu/cuda libs required for best performance inference and running the code, just install the requirements.txt inside a non-volatile volume inside the container.
+I strongly recommend to run the code inside a nvidia/cuda:12.1.0-devel-ubuntu22.04 docker container, that image has all gpu/cuda libs required for best performance inference and running the code, just install the requirements.txt inside a non-volatile volume inside the container.
 
 ## Conclusion
 
