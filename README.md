@@ -34,6 +34,10 @@ Intended for local testing and demonstration, this server illustrates machine le
 
 While the server is designed with efficiency and concurrency in mind, it lacks specific optimizations for GPU usage, such as continuous batching. This implementation focuses on demonstrating basic batching and asynchronous processing capabilities. Users looking to scale this solution for higher performance in production environments should consider implementing more advanced GPU optimization techniques or the use production ready solutions.
 
+### Dependencies and execution
+
+I strongly recommend to run the code inside a nvidia/cuda:12.1.0-devel-ubuntu22.04 docker container, that container has all gpu/cuda libs required for best performance inference and running the code, just install the requirements.txt inside a non-volatile volume inside the container.
+
 ## Conclusion
 
 The server demonstrates a practical approach to NLP tasks using FastAPI and the BAAI bge_m3 multilingual model, focusing on asynchronous processing, batching, and concurrency. It's a robust solution for local environments, with scalability and efficiency in mind. Users are encouraged to adapt and extend it for specific needs and production readiness.
