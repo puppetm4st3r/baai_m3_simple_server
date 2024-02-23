@@ -10,13 +10,13 @@ import time
 from concurrent.futures import ThreadPoolExecutor
 
 batch_size = 2 # gpu batch_size in order of your available vram
-max_request = 3 # max request for future improvements on api calls / gpu batches (for now is pretty basic)
+max_request = 10 # max request for future improvements on api calls / gpu batches (for now is pretty basic)
 max_length = 5000 # max context length for embeddings and passages in re-ranker
 max_q_length = 256 # max context lenght for questions in re-ranker
-request_flush_timeout = 10 # flush time out for future improvements on api calls / gpu batches (for now is pretty basic)
+request_flush_timeout = .1 # flush time out for future improvements on api calls / gpu batches (for now is pretty basic)
 rerank_weights = [0.4, 0.2, 0.4] # re-rank score weights
 request_time_out = 30  # Timeout threshold
-gpu_time_out = 30 # gpu processing timeout threshold
+gpu_time_out = 5 # gpu processing timeout threshold
 port= 3000
 
 class m3Wrapper:
